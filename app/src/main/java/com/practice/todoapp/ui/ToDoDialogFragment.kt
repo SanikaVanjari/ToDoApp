@@ -1,4 +1,4 @@
-package com.practice.todoapp
+package com.practice.todoapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

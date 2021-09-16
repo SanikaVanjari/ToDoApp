@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.practice.todoapp.FirstFragment"
+        android:name="com.practice.todoapp.ui.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -30,6 +30,6 @@
     </fragment>
     <dialog
         android:id="@+id/toDoDialogFragment"
-        android:name="com.practice.todoapp.ToDoDialogFragment"
+        android:name="com.practice.todoapp.ui.ToDoDialogFragment"
         android:label="ToDoDialogFragment" />
 </navigation>
