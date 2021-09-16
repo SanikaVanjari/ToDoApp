@@ -1,6 +1,7 @@
 package com.practice.todoapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -35,6 +36,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener {
             navController.navigate(R.id.action_FirstFragment_to_toDoDialogFragment)
+        }
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+        mainViewModel.todoList.observe(this) {
+            Log.d("MAIN", it.toString())
         }
     }
 
