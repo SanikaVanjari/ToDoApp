@@ -44,6 +44,7 @@ class FirstFragment : Fragment() {
         adapterToDo = ToDoAdapter(onMarkComplete = {
             Toast.makeText(requireContext(), "Complete", Toast.LENGTH_SHORT).show()
         }, onDeleteClick = {
+            viewModel.deleteToDo(it)
             Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
         })
         setObserver()

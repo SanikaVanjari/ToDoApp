@@ -16,12 +16,11 @@ class MainViewModel @Inject constructor(private val toDoRepository: ToDoReposito
 
     val todoList: LiveData<List<ToDo>?> = toDoRepository.getAllTodo()
 
-    fun insertToDo(toDo: ToDo) {
-        viewModelScope.launch {
-            toDoRepository.insertToDo(toDo)
-        }
+    fun insertToDo(toDo: ToDo) = viewModelScope.launch {
+        toDoRepository.insertToDo(toDo)
     }
 
-
-    suspend fun deleteToDo(toDo: ToDo) = toDoRepository.deleteToDo(toDo)
+    fun deleteToDo(toDo: ToDo) = viewModelScope.launch {
+        toDoRepository.deleteToDo(toDo)
+    }
 }
