@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.practice.todoapp.MainViewModel
 import com.practice.todoapp.adapter.ToDoAdapter
 import com.practice.todoapp.databinding.FragmentFirstBinding
+import com.practice.todoapp.db.ToDo
+import com.practice.todoapp.util.Actions
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -42,16 +44,23 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        adapterToDo = ToDoAdapter(onMarkComplete = {
-            it.id?.let { it1 -> viewModel.markComplete(it1) }
-            Toast.makeText(requireContext(), "Complete", Toast.LENGTH_SHORT).show()
-        }, onDeleteClick = {
-            viewModel.deleteToDo(it)
-            Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
-        }, onUpdateClick = {
-            val action = FirstFragmentDirections.actionFirstFragmentToToDoDialogFragment(it)
-            findNavController().navigate(action)
-        })
+        adapterToDo = ToDoAdapter() { todo: ToDo, action: Actions ->
+            when (action) {
+                Actions.DELETE -> {
+                    viewModel.deleteToDo(todo)
+                    Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
+                }
+                Actions.UPDATE -> {
+                    val action =
+                        FirstFragmentDirections.actionFirstFragmentToToDoDialogFragment(todo)
+                    findNavController().navigate(action)
+                }
+                Actions.MARK_COMPLETE -> {
+                    todo.id?.let { it1 -> viewModel.markComplete(it1) }
+                    Toast.makeText(requireContext(), "Complete", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
         setObserver()
         setUpRV()
     }

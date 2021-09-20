@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.practice.todoapp.databinding.TodoItemLayoutBinding
 import com.practice.todoapp.db.ToDo
+import com.practice.todoapp.util.Actions
 
 class ToDoAdapter(
-    var onMarkComplete: (todo: ToDo) -> Unit,
-    var onDeleteClick: (todo: ToDo) -> Unit,
-    var onUpdateClick: (todo: ToDo) -> Unit
+    var click: (todo: ToDo, action: Actions) -> Unit,
 ) :
     RecyclerView.Adapter<ToDoAdapter.ToDoListViewHolder>() {
 
@@ -37,9 +36,7 @@ class ToDoAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             toDo: ToDo,
-            onMarkComplete: (todo: ToDo) -> Unit,
-            onDeleteClick: (todo: ToDo) -> Unit,
-            onUpdateClick: (todo: ToDo) -> Unit
+            click: (todo: ToDo, action: Actions) -> Unit
         ) {
             binding.apply {
 
@@ -55,13 +52,13 @@ class ToDoAdapter(
                 }
 
                 markCompleteBt.setOnClickListener {
-                    onMarkComplete(toDo)
+                    click(toDo, Actions.MARK_COMPLETE)
                 }
                 deleteBt.setOnClickListener {
-                    onDeleteClick(toDo)
+                    click(toDo, Actions.DELETE)
                 }
                 updateBt.setOnClickListener {
-                    onUpdateClick(toDo)
+                    click(toDo, Actions.UPDATE)
                 }
             }
         }
@@ -78,12 +75,8 @@ class ToDoAdapter(
     }
 
     override fun onBindViewHolder(holder: ToDoListViewHolder, position: Int) {
-        holder.bind(todoList[position], onMarkComplete = {
-            onMarkComplete(it)
-        }, onDeleteClick = {
-            onDeleteClick(it)
-        }, onUpdateClick = {
-            onUpdateClick(it)
+        holder.bind(todoList[position], click = { todo, action ->
+            click(todo, action)
         })
     }
 
