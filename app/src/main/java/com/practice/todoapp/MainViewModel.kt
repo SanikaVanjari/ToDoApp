@@ -27,4 +27,8 @@ class MainViewModel @Inject constructor(private val toDoRepository: ToDoReposito
     fun updateToDo(toDo: ToDo) = viewModelScope.launch {
         toDoRepository.updateToDo(toDo)
     }
+
+    fun markComplete(todo: Int) = viewModelScope.launch {
+        toDoRepository.markCompleteToDo(todo)
+    }
 }

@@ -43,6 +43,7 @@ class FirstFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         adapterToDo = ToDoAdapter(onMarkComplete = {
+            it.id?.let { it1 -> viewModel.markComplete(it1) }
             Toast.makeText(requireContext(), "Complete", Toast.LENGTH_SHORT).show()
         }, onDeleteClick = {
             viewModel.deleteToDo(it)

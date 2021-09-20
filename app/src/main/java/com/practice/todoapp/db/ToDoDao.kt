@@ -18,4 +18,8 @@ interface ToDoDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateToDo(toDo: ToDo)
 
+    @Query("UPDATE todo SET complete=1 WHERE id=:id")
+    suspend fun markCompleteToDo(id: Int)
+
+
 }

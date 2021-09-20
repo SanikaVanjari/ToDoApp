@@ -2,6 +2,7 @@ package com.practice.todoapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -41,8 +42,18 @@ class ToDoAdapter(
             onUpdateClick: (todo: ToDo) -> Unit
         ) {
             binding.apply {
+
                 titleTV.text = toDo.title
                 descriptionTV.text = toDo.description
+
+                if (toDo.complete) {
+                    markCompleteBt.isVisible = false
+                    updateBt.isVisible = false
+                } else {
+                    markCompleteBt.isVisible = true
+                    updateBt.isVisible = true
+                }
+
                 markCompleteBt.setOnClickListener {
                     onMarkComplete(toDo)
                 }

@@ -12,5 +12,7 @@ data class ToDo(
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "description")
-    val description: String
+    val description: String,
+    @ColumnInfo(name = "complete")
+    val complete: Boolean = false,
 ) : Serializable

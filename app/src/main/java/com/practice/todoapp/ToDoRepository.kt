@@ -3,7 +3,6 @@ package com.practice.todoapp
 import androidx.lifecycle.LiveData
 import com.practice.todoapp.db.ToDo
 import com.practice.todoapp.db.ToDoDao
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ToDoRepository @Inject constructor(private val toDoDao: ToDoDao) {
@@ -14,6 +13,7 @@ class ToDoRepository @Inject constructor(private val toDoDao: ToDoDao) {
 
     suspend fun deleteToDo(toDo: ToDo) = toDoDao.deleteTodo(toDo)
     suspend fun updateToDo(toDo: ToDo) = toDoDao.updateToDo(toDo)
+    suspend fun markCompleteToDo(todo: Int) = toDoDao.markCompleteToDo(todo)
 
 
 }
