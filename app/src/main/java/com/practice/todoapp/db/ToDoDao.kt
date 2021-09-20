@@ -14,4 +14,8 @@ interface ToDoDao {
 
     @Query("SELECT * from todo")
     fun getAllTodo(): LiveData<List<ToDo>?>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateToDo(toDo: ToDo)
+
 }

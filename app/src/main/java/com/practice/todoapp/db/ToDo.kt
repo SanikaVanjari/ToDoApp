@@ -3,6 +3,7 @@ package com.practice.todoapp.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "todo")
 data class ToDo(
@@ -12,4 +13,4 @@ data class ToDo(
     val title: String,
     @ColumnInfo(name = "description")
     val description: String
-)
+) : Serializable

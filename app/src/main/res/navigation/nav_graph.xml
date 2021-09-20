@@ -12,24 +12,17 @@
         tools:layout="@layout/fragment_first">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
             android:id="@+id/action_FirstFragment_to_toDoDialogFragment"
             app:destination="@id/toDoDialogFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.practice.todoapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
     </fragment>
     <dialog
         android:id="@+id/toDoDialogFragment"
         android:name="com.practice.todoapp.ui.ToDoDialogFragment"
-        android:label="ToDoDialogFragment" />
+        android:label="ToDoDialogFragment">
+        <argument
+            android:name="todo"
+            android:defaultValue="@null"
+            app:argType="com.practice.todoapp.db.ToDo"
+            app:nullable="true" />
+    </dialog>
 </navigation>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.practice.todoapp.MainViewModel
 import com.practice.todoapp.adapter.ToDoAdapter
@@ -46,6 +47,9 @@ class FirstFragment : Fragment() {
         }, onDeleteClick = {
             viewModel.deleteToDo(it)
             Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show()
+        }, onUpdateClick = {
+            val action = FirstFragmentDirections.actionFirstFragmentToToDoDialogFragment(it)
+            findNavController().navigate(action)
         })
         setObserver()
         setUpRV()

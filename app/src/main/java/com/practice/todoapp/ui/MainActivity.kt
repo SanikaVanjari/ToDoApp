@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener {
-            navController.navigate(R.id.action_FirstFragment_to_toDoDialogFragment)
+            val action = FirstFragmentDirections.actionFirstFragmentToToDoDialogFragment()
+            navController.navigate(action)
         }
         setUpObservers()
     }

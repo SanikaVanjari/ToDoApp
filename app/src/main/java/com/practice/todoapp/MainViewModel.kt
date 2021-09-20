@@ -23,4 +23,8 @@ class MainViewModel @Inject constructor(private val toDoRepository: ToDoReposito
     fun deleteToDo(toDo: ToDo) = viewModelScope.launch {
         toDoRepository.deleteToDo(toDo)
     }
+
+    fun updateToDo(toDo: ToDo) = viewModelScope.launch {
+        toDoRepository.updateToDo(toDo)
+    }
 }

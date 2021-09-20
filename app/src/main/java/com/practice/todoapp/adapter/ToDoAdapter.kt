@@ -10,7 +10,8 @@ import com.practice.todoapp.db.ToDo
 
 class ToDoAdapter(
     var onMarkComplete: (todo: ToDo) -> Unit,
-    var onDeleteClick: (todo: ToDo) -> Unit
+    var onDeleteClick: (todo: ToDo) -> Unit,
+    var onUpdateClick: (todo: ToDo) -> Unit
 ) :
     RecyclerView.Adapter<ToDoAdapter.ToDoListViewHolder>() {
 
@@ -36,7 +37,8 @@ class ToDoAdapter(
         fun bind(
             toDo: ToDo,
             onMarkComplete: (todo: ToDo) -> Unit,
-            onDeleteClick: (todo: ToDo) -> Unit
+            onDeleteClick: (todo: ToDo) -> Unit,
+            onUpdateClick: (todo: ToDo) -> Unit
         ) {
             binding.apply {
                 titleTV.text = toDo.title
@@ -46,6 +48,9 @@ class ToDoAdapter(
                 }
                 deleteBt.setOnClickListener {
                     onDeleteClick(toDo)
+                }
+                updateBt.setOnClickListener {
+                    onUpdateClick(toDo)
                 }
             }
         }
@@ -66,6 +71,8 @@ class ToDoAdapter(
             onMarkComplete(it)
         }, onDeleteClick = {
             onDeleteClick(it)
+        }, onUpdateClick = {
+            onUpdateClick(it)
         })
     }
 
